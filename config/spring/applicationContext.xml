@@ -12,7 +12,6 @@
     http://www.springframework.org/schema/context 
     http://www.springframework.org/schema/context/spring-context.xsd"
     >
-    <context:component-scan base-package="com.ssm"/>
     <context:property-placeholder location="classpath:db.properties"/>
     <!-- 数据源 -->
     <bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -24,7 +23,7 @@
     <!-- sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     	<!-- 加载mybatis核心配置文件 -->
-    	<property name="configLocation" value="mybatis/SqlMapConfig.xml"/>
+    	<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"/>
     	<!-- 数据源 -->
     	<property name="dataSource" ref="c3p0DataSource"></property>
     </bean>

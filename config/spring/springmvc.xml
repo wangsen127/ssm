@@ -13,11 +13,19 @@
     http://www.springframework.org/schema/context/spring-context.xsd"
     >
     
-    <context:component-scan base-package="com.mvc"></context:component-scan>
-    
-    <!-- mvc:annotation-driven -->
-    <mvc:annotation-driven conversion-service="conversionService" validator="validator">
+    <context:component-scan base-package="com.ssm"/>
+    <!-- mvc:annotation-driven 
+    conversion-service="conversionService"
+    validator="validator"
+    -->
+    <mvc:annotation-driven>
     </mvc:annotation-driven>
+    
+    <!-- 视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    	<property name="prefix" value="/WEB-INF/jsp/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
     
     <!--
            让springmvc不拦截静态资源 
@@ -25,40 +33,31 @@
      -->
 	
 	
-	<!-- 日期类型转换器 -->
+	<!-- 日期类型转换器 
 	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+	-->
 		<!-- <property name="converters">
 			<list>
 				<bean class="com.mvc.converter.DateConverter"/>
 			</list>
-		</property> -->
+		</property> 
 		<property name="formatters">
 			<bean class="com.mvc.converter.DateFormatter">
 				<constructor-arg value="yyyy-MM-dd"></constructor-arg>
 			</bean>
 		</property>
 	</bean>
+		-->
 	
-    <!-- 视图解析器 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    	<property name="prefix" value="/WEB-INF/jsp/"></property>
-        <property name="suffix" value=".jsp"></property>
-    </bean>
-   
-    <!-- 配置拦截器  -->
+    <!-- 配置拦截器  
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/regist.html"/>
 			<bean class="com.mvc.interceptor.EncodeInterceptor"/>
 		</mvc:interceptor>
-		
-		<!-- <mvc:interceptor>
-			<mvc:mapping path="/*.do"/>
-			<bean class="com.mvc.interceptor.HelloInterceptor"/>
-		</mvc:interceptor> -->
 	</mvc:interceptors>    
-   
+   -->
     
     <!-- 数据校验框架 -->
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">

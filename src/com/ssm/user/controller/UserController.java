@@ -42,7 +42,7 @@ public class UserController {
 		return "redirect:queryUser.do";
 	}
 	
-	@RequestMapping("/editUser.do")
+	@RequestMapping("/delUser.do")
 	public String delUser(Integer userid) throws Exception {
 		userService.delUser(userid);
 		return "redirect:queryUser.do";
