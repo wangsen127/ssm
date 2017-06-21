@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间的名称与 dao接口的全限定名称保持一致 -->
+<mapper namespace="com.mybatis.dao.StudentDao">
+	
+	<!-- 标签的id 与 dao的方法名称 一致 -->
+	<select id="listStudent" parameterType="com.mybatis.entity.Student" resultType="com.mybatis.entity.Student">
+		select * from student
+			<where>
+				<if test="id!=null and id !=''">
+					and id = #{id}
+				</if>
+				<if test="name!=null and name!=''">
+					and name = #{name}
+				</if>
+				<if test="password!=null and password!=''">
+					and password = #{password}
+				</if>
+				<if test="score!=0.0">
+					and score = #{score}
+				</if>
+			</where>
+	</select>
+	<delete id="delStudent">
+		delete from student where id in
+		<!--foreach 用于循环遍历数组或者集合等参数的类型
+			collection：的值 如果传递过来的参数是集合 则 collection的值为list
+			collection：的值 如果传递过来的参数是数组 则 collection的值为array
+			open表示开始的符号
+			separator表示分割符号
+			close表示结束的符号
+			item表示每次数组循环出来的元素
+		  -->
+		<foreach collection="list" open="(" close=")" separator="," item="id">
+		#{id}
+		</foreach>
+	</delete>
+	<delete id="delStudent2">
+		delete from student where id in
+		<foreach collection="array" open="(" close=")" separator="," item="id">
+		#{id}
+		</foreach>
+	</delete>
+</mapper>

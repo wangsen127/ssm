@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间的名称与 dao接口的全限定名称保持一致 -->
+<mapper namespace="com.mybatis.dao.StudentDao">
+	
+	<!-- 标签的id 与 dao的方法名称 一致 -->
+	<select id="queryUser" resultType="com.ssm.user.pojo.User">
+		select userid,usercode,username,password,role from t_user where delflag=1
+	</select>
+	<select id="getUser" parameterType="integer" resultType="com.ssm.user.pojo.User">
+		select userid,usercode,username,password,role from t_user where delflag=1 and userid=#{userid}
+	</select>
+	<insert id="insertUser" parameterType="com.ssm.user.pojo.User">
+		insert into t_user(usercode,username,password,role) values(#{usercode},#{username},#{password},#{role})
+	</insert>
+	<update id="updateUser" parameterType="com.ssm.user.pojo.User">
+		update t_user set usercode=#{usercode},username=#{username},role#{role} where userid=#{userid}
+	</update>
+	<update id="changePassword" parameterType="com.ssm.user.pojo.User">
+		update t_user set password=#{password} where userid=#{userid}
+	</update>
+	<update id="deleteUser" parameterType="integer">
+		update t_user set delflag=0 where userid in
+		<foreach collection="list" open="(" close=")" separator="," item="id">
+		#{id}
+		</foreach>
+	</update>
+</mapper>
