@@ -22,7 +22,7 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 	}
 
 	@Override
-	public void deleteUser(Integer userid) throws Exception {
+	public void deleteUser(Integer[] userid) throws Exception {
 		this.openSession().delete("com.mybatis.dao.StudentDao.deleteUser", userid);
 		
 	}
@@ -35,6 +35,21 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 	@Override
 	public List<User> queryUser() throws Exception {
 		return this.openSession().selectList("com.mybatis.dao.StudentDao.queryUser");
+	}
+
+	@Override
+	public void changePassword(User user) throws Exception {
+		this.openSession().update("com.mybatis.dao.StudentDao.changePassword", user);
+	}
+
+	@Override
+	public User login(User user) throws Exception {
+		return this.openSession().selectOne("com.mybatis.dao.StudentDao.login", user);
+	}
+
+	@Override
+	public List<User> queryUserPart(User user) throws Exception {
+		return this.openSession().selectList("com.mybatis.dao.StudentDao.queryUserPart", user);
 	}
 
 	

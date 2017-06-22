@@ -5,25 +5,40 @@
 <mapper namespace="com.mybatis.dao.StudentDao">
 	
 	<!-- 标签的id 与 dao的方法名称 一致 -->
-	<select id="queryUser" resultType="com.ssm.user.pojo.User">
-		select userid,usercode,username,password,role from t_user where delflag=1
-	</select>
-	<select id="getUser" parameterType="integer" resultType="com.ssm.user.pojo.User">
-		select userid,usercode,username,password,role from t_user where delflag=1 and userid=#{userid}
-	</select>
 	<insert id="insertUser" parameterType="com.ssm.user.pojo.User">
 		insert into t_user(usercode,username,password,role) values(#{usercode},#{username},#{password},#{role})
 	</insert>
 	<update id="updateUser" parameterType="com.ssm.user.pojo.User">
-		update t_user set usercode=#{usercode},username=#{username},role#{role} where userid=#{userid}
-	</update>
-	<update id="changePassword" parameterType="com.ssm.user.pojo.User">
-		update t_user set password=#{password} where userid=#{userid}
+		update t_user set usercode=#{usercode},username=#{username},role=#{role} where userid=#{userid}
 	</update>
 	<update id="deleteUser" parameterType="integer">
 		update t_user set delflag=0 where userid in
-		<foreach collection="list" open="(" close=")" separator="," item="id">
+		<foreach collection="array" open="(" close=")" separator="," item="id">
 		#{id}
 		</foreach>
 	</update>
+	<select id="getUser" parameterType="integer" resultType="com.ssm.user.pojo.User">
+		select userid,usercode,username,password,role from t_user where delflag=1 and userid=#{userid}
+	</select>
+	<select id="queryUser" resultType="com.ssm.user.pojo.User">
+		select userid,usercode,username,password,role from t_user where delflag=1
+	</select>
+	
+	<update id="changePassword" parameterType="com.ssm.user.pojo.User">
+		update t_user set password=#{password} where userid=#{userid}
+	</update>
+	<select id="login" parameterType="com.ssm.user.pojo.User" resultType="com.ssm.user.pojo.User">
+		select userid,usercode,username,password,role from t_user
+		where delflag=1 and usercode=#{usercode} and password=#{password}
+	</select>
+	<select id="queryUserPart" parameterType="com.ssm.user.pojo.User" resultType="com.ssm.user.pojo.User">
+		select userid,usercode,username,password,role from t_user 
+		where delflag=1
+		<if test="username!=null and username!=''">
+			and username=#{username}
+		</if>
+		<if test="role!=null and role!=-1">
+			and role=#{role}
+		</if>
+	</select>
 </mapper>
