@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 	<center>
 		<h3>用户修改</h3>
-		<form action="user/editUser.do" method="post">
+		<form action="user/editUser.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="userid" value="${user.userid }"/>
 		<table border="0">
 			<tr>
@@ -41,11 +41,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</tr>
 			<tr>
 				<td>头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像:</td>
-				<td><input id="file" type="file" name="" size="10"/></td>
+				<td><input type="file" name="pic" size="10"/></td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<img id="pic" src="###" width="100" height="100"/>
+					<img src="${user.fileUpload.url }" width="100" height="100"/>
 				</td>
 			</tr>
 			<tr>

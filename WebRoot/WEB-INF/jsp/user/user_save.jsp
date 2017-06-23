@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</tr>
 			<tr>
 				<td>头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像:</td>
-				<td><input id="file" type="file" name="" size="10"/></td>
+				<td><input type="file" name="pic" size="10"/></td>
 			</tr>
 			<tr align="center">
 				<td colspan="2">

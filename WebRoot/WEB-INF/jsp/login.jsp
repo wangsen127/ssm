@@ -18,15 +18,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 	<center>
 		<h3>用户登陆</h3>
+		<font color="red">${message}</font>
 		<form action="user/login.do" method="post">
 		<table border="0">
 			<tr>
 				<td>用&nbsp;户&nbsp;名:</td>
-				<td><input name="usercode" value="${user.ename }"/></td>
+				<td><input name="usercode" value="${user.usercode }"/></td>
 			</tr>
 			<tr>
 				<td>密&nbsp;&nbsp;&nbsp;&nbsp;码:</td>
-				<td><input name="password" value="${user.password }"/></td>
+				<td><input type="password" name="password"/></td>
 			</tr>
 			<tr align="center">
 				<td colspan="2"><input type="submit" value="登陆" /></td>

@@ -1,5 +1,7 @@
 package com.ssm.user.pojo;
 
+import com.ssm.core.pojo.FileUpload;
+
 public class User {
 
 	private Integer userid;
@@ -8,6 +10,7 @@ public class User {
 	private String password;
 	private Integer role;
 	private Integer delflag;
+	private FileUpload fileUpload;
 	public Integer getUserid() {
 		return userid;
 	}
@@ -43,5 +46,11 @@ public class User {
 	}
 	public void setDelflag(Integer delflag) {
 		this.delflag = delflag;
+	}
+	public FileUpload getFileUpload() {
+		return fileUpload;
+	}
+	public void setFileUpload(FileUpload fileUpload) {
+		this.fileUpload = fileUpload;
 	}
 }

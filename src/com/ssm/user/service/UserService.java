@@ -1,4 +1,4 @@
-package com.ssm.user.serivce;
+package com.ssm.user.service;
 
 import java.util.List;
 
