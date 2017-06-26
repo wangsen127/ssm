@@ -9,4 +9,6 @@ public interface FileUploadDao {
 	public void insertFileUpload(FileUpload fileUpload);
 	public FileUpload getFileUpload(Integer uid);
 	public List<FileUpload> queryFileUpload(FileUpload fileUpload);
+	
+	public void delFileUploadByFid(Integer fid);
 }

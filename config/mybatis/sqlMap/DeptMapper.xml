@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间的名称与 dao接口的全限定名称保持一致 -->
+<mapper namespace="com.ssm.emp.dao.DeptDao">
+	
+	<!-- 标签的id 与 dao的方法名称 一致 -->
+	<insert id="insertDept" parameterType="com.ssm.emp.pojo.Dept" useGeneratedKeys="true" keyProperty="did">
+		insert into t_dept(dname) values(#{dname})
+	</insert>
+	<update id="updateDept" parameterType="com.ssm.emp.pojo.Dept">
+		update t_dept set dname=#{dname} where did=#{did}
+	</update>
+	<delete id="deleteDept" parameterType="integer">
+		delete from t_dept where did in
+		<foreach collection="array" open="(" close=")" separator="," item="id">
+		#{id}
+		</foreach>
+	</delete>
+	<select id="getDept" parameterType="integer" resultType="com.ssm.emp.pojo.Dept">
+		select did,dname from t_dept where did=#{did}
+	</select>
+	<select id="queryDept" parameterType="com.ssm.emp.pojo.Dept" resultType="com.ssm.emp.pojo.Dept">
+		select did,dname from t_dept
+		<where>
+			<if test="dname!=null and dname!=''">
+				and dname=#{dname}
+			</if>
+		</where>
+	</select>
+</mapper>

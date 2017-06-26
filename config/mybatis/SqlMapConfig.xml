@@ -7,6 +7,7 @@
 	<mappers>
 		<mapper resource="mybatis/sqlMap/UserMapper.xml"/>
 		<mapper resource="mybatis/sqlMap/FileUploadMapper.xml"/>
+		<mapper resource="mybatis/sqlMap/DeptMapper.xml"/>
 	</mappers>
 	
 </configuration>

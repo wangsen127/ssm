@@ -13,15 +13,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 	<center>
-	<a href="user/queryUser.do">用户页面</a><br>
+	当前登陆用户：${userBean.username }<img src="${userBean.fileUpload.url }" width="100" height="100">
+	<a href="user/showChangePassword.do">修改密码</a>
+	<a href="user/logout.do">退出系统</a>
 	<hr>
-	<a href="regist.html">注册页面</a><br>
-	<a href="listEmp.do">员工页面</a><br>
-	<a href="showMap.do">测试map集合类型的参数</a><br>
-	<a href="showUpload.do">测试文件上传</a><br>
-	<a href="showUpload2.do">测试多文件上传</a><br>
-	<a href="showDownload.do">测试文件下载</a><br>
-	<a href="showJson.do">测试json</a><br>
+	1.<a href="user/queryUser.do">用户管理</a><br>
+	2.<a href="emp/queryDept.do">部门管理</a><br>
+	3.<a href="listEmp.do">员工管理</a><br>
+	4.<a href="regist.html">注册页面</a><br>
 	</center>
 </body>
 </html>

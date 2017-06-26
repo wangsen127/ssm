@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间的名称与 dao接口的全限定名称保持一致 -->
+<mapper namespace="com.ssm.emp.dao.EmpDao">
+	
+	<!-- 标签的id 与 dao的方法名称 一致 -->
+	<insert id="insertEmp" parameterType="com.ssm.emp.pojo.Emp" useGeneratedKeys="true" keyProperty="eid">
+		insert into t_emp(ename,sal,hireDate,deptid) values(#{ename},#{sal},#{hireDate},#{dept.did})
+	</insert>
+	<update id="updateEmp" parameterType="com.ssm.emp.pojo.Emp">
+		update t_emp set ename=#{ename},sal=#{sal},hireDate=#{hireDate},deptid=#{dept.did} where eid=#{eid}
+	</update>
+	<delete id="deleteEmp" parameterType="integer">
+		delete from t_emp where eid in
+		<foreach collection="array" open="(" close=")" separator="," item="id">
+		#{id}
+		</foreach>
+	</delete>
+	<select id="getEmp" parameterType="integer" resultMap="empMap">
+		select eid,ename,sal,hireDate,did,dname
+		from t_emp a,t_dept b
+		where a.deptid=b.did and eid=#{eid}
+	</select>
+	<select id="queryEmp" parameterType="com.ssm.emp.pojo.Emp" resultMap="empMap">
+		select eid,ename,sal,hireDate,did,dname
+		from t_emp a,t_dept b
+		where a.deptid=b.did
+		<if test="ename!=null and ename!=''">
+			and ename=#{ename}
+		</if>
+		<if test="dept.did!=null and dept.did!=-1">
+			and b.did=#{dept.did}
+		</if>
+	</select>
+	<resultMap type="com.ssm.emp.pojo.Emp" id="empMap">
+		<id property="eid" column="eid"/>
+		<result property="ename" column="ename"/>
+		<result property="sal" column="sal"/>
+		<result property="hiredate" column="hiredate"/>
+		<association property="dept" javaType="com.ssm.emp.pojo.Dept">
+			<id property="did" column="did"/>
+		<result property="dname" column="dname"/>
+		</association>
+	</resultMap>
+</mapper>

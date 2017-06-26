@@ -23,15 +23,21 @@ public class UserServiceImpl implements UserService{
 	public void saveUser(User user) throws Exception {
 		userDao.insertUser(user);
 		FileUpload fileUpload = user.getFileUpload();
-		fileUpload.setFid(user.getUserid());
-		fileUploadDao.insertFileUpload(fileUpload);
 		if(fileUpload != null){
+			fileUpload.setFid(user.getUserid());
+			fileUploadDao.insertFileUpload(fileUpload);
 		}
 	}
 
 	@Override
 	public void editUser(User user) throws Exception {
 		userDao.updateUser(user);
+		FileUpload fileUpload = user.getFileUpload();
+		if(fileUpload != null){
+			fileUpload.setFid(user.getUserid());
+			fileUploadDao.delFileUploadByFid(user.getUserid());
+			fileUploadDao.insertFileUpload(fileUpload);
+		}
 	}
 
 	@Override
@@ -41,7 +47,14 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User getUser(Integer userid) throws Exception {
-		return userDao.getUser(userid);
+		User user =userDao.getUser(userid);
+		FileUpload fileUpload = new FileUpload();
+		fileUpload.setFid(user.getUserid());
+		fileUpload.setModule("user");
+		List<FileUpload> list = fileUploadDao.queryFileUpload(fileUpload);
+		if(!list.isEmpty())
+			user.setFileUpload(list.get(0));
+		return user;
 	}
 
 	@Override
@@ -56,7 +69,16 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User login(User user) throws Exception {
-		return userDao.login(user);
+		User userBean = userDao.login(user);
+		if(userBean != null){
+			FileUpload fileUpload = new FileUpload();
+			fileUpload.setFid(userBean.getUserid());
+			fileUpload.setModule("user");
+			List<FileUpload> list = fileUploadDao.queryFileUpload(fileUpload);
+			if(!list.isEmpty())
+				userBean.setFileUpload(list.get(0));
+		}
+		return userBean;
 	}
 
 }

@@ -9,17 +9,6 @@
 		insert into t_file_upload(originalname,realname,url,suffixname,filesize,module,fid) 
 		values(#{originalname},#{realname},#{url},#{suffixname},#{filesize},#{module},#{fid})
 	</insert>
-	<!-- 
-	<update id="updateFileUpload" parameterType="com.ssm.user.pojo.User">
-		update t_user set usercode=#{usercode},username=#{username},role=#{role} where userid=#{userid}
-	</update>
-	<update id="deleteFileUpload" parameterType="integer">
-		update t_user set delflag=0 where userid in
-		<foreach collection="array" open="(" close=")" separator="," item="id">
-		#{id}
-		</foreach>
-	</update> 
-	-->
 	<select id="getFileUpload" parameterType="integer" resultType="com.ssm.core.pojo.FileUpload">
 		select uid,originalname,realname,url,suffixname,filesize,module,fid from t_file_upload 
 		where uid=#{uid}
@@ -35,4 +24,18 @@
 		</if>
 		</where>
 	</select>
+	<delete id="delFileUploadByFid" parameterType="integer">
+		delete from t_file_upload where fid=#{fid}
+	</delete>
+	<!-- 
+	<update id="updateFileUpload" parameterType="com.ssm.user.pojo.User">
+		update t_user set usercode=#{usercode},username=#{username},role=#{role} where userid=#{userid}
+	</update>
+	<update id="deleteFileUpload" parameterType="integer">
+		update t_user set delflag=0 where userid in
+		<foreach collection="array" open="(" close=")" separator="," item="id">
+		#{id}
+		</foreach>
+	</update> 
+	-->
 </mapper>

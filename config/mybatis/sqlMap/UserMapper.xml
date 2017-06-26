@@ -17,27 +17,12 @@
 		#{id}
 		</foreach>
 	</update>
-	<select id="getUser" parameterType="integer" resultMap="userMap">
-		select userid,usercode,username,password,role,uid,originalname,realname,url,suffixname,filesize,module
-		from t_user a,t_file_upload b 
-		where delflag=1 and userid=#{userid} and module='user' and a.userid=b.fid;
+	<select id="getUser" parameterType="integer" resultType="com.ssm.user.pojo.User">
+		select userid,usercode,username,password,role
+		from t_user
+		where delflag=1 and userid=#{userid}
 	</select>
-	<resultMap type="com.ssm.user.pojo.User" id="userMap">
-		<id property="userid" column="userid"/>
-		<result property="usercode" column="usercode"/>
-		<result property="username" column="username"/>
-		<result property="password" column="password"/>
-		<result property="role" column="role"/>
-		<association property="fileUpload" javaType="com.ssm.core.pojo.FileUpload">
-			<id property="uid" column="uid"/>
-			<result property="originalname" column="originalname"/>
-			<result property="realname" column="realname"/>
-			<result property="url" column="url"/>
-			<result property="suffixname" column="suffixname"/>
-			<result property="filesize" column="filesize"/>
-			<result property="module" column="module"/>
-		</association>
-	</resultMap>
+	
 	<select id="queryUser" resultType="com.ssm.user.pojo.User">
 		select userid,usercode,username,password,role from t_user where delflag=1
 	</select>

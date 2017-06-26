@@ -11,13 +11,13 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Emp {
 
 	private Integer eid;
-	@NotBlank(message="{emp.ename.isnull}")
-	@Size(min=4,max=8,message="{emp.ename.size}")
+	//@NotBlank(message="{emp.ename.isnull}")
+	//@Size(min=4,max=8,message="{emp.ename.size}")
 	private String ename;
-	@NotNull(message="{emp.sal.isnull}")
-	@DecimalMin(value="0",message="{emp.sal.min}")
+	//@NotNull(message="{emp.sal.isnull}")
+	//@DecimalMin(value="0",message="{emp.sal.min}")
 	private Double sal;
-	@NotNull(message="{emp.hireDate.isnull}")
+	//@NotNull(message="{emp.hireDate.isnull}")
 	private Date hireDate;
 	private Dept dept;
 	public Integer getEid() {

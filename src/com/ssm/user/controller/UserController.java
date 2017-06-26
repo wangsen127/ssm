@@ -48,11 +48,10 @@ public class UserController {
 	
 	@RequestMapping("/editUser.do")
 	public String editUser(User user, MultipartFile pic) throws Exception {
-		userService.editUser(user);
-		
 		FileUpload fileUpload = UploadUtil.upload(pic,"user");
 		user.setFileUpload(fileUpload);
 		
+		userService.editUser(user);
 		return "redirect:queryUser.do";
 	}
 	
@@ -71,14 +70,17 @@ public class UserController {
 	
 	@RequestMapping("/showChangePassword.do")
 	public String showChangePassword() throws Exception {
-		return "user/user_changepassword";
+		return "user/user_password";
 	}
 	
 	@RequestMapping("/changePassword.do")
-	public String changePassword(User user) throws Exception {
+	public String changePassword(HttpSession session, User user) throws Exception {
 		user.setPassword(MD5Util.toMD5(user.getPassword()));
 		userService.changePassword(user);
-		return "redirect:queryUser.do";
+		
+		session.removeAttribute("userBean");
+		session.invalidate();
+		return "index";
 	}
 	
 	@RequestMapping("/login.do")
@@ -91,5 +93,12 @@ public class UserController {
 		}
 		session.setAttribute("userBean", userBean);
 		return "index";
+	}
+	
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) throws Exception {
+		session.removeAttribute("userBean");
+		session.invalidate();
+		return "login";
 	}
 }
