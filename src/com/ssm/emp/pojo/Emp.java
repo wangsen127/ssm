@@ -18,7 +18,7 @@ public class Emp {
 	//@DecimalMin(value="0",message="{emp.sal.min}")
 	private Double sal;
 	//@NotNull(message="{emp.hireDate.isnull}")
-	private Date hireDate;
+	private Date hiredate;
 	private Dept dept;
 	public Integer getEid() {
 		return eid;
@@ -38,11 +38,11 @@ public class Emp {
 	public void setSal(Double sal) {
 		this.sal = sal;
 	}
-	public Date getHireDate() {
-		return hireDate;
+	public Date getHiredate() {
+		return hiredate;
 	}
-	public void setHireDate(Date hireDate) {
-		this.hireDate = hireDate;
+	public void setHiredate(Date hiredate) {
+		this.hiredate = hiredate;
 	}
 	public Dept getDept() {
 		return dept;

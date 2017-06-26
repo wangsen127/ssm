@@ -18,10 +18,9 @@
     	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
     <!-- mvc:annotation-driven 
-    conversion-service="conversionService"
     validator="validator"
     -->
-    <mvc:annotation-driven>
+    <mvc:annotation-driven conversion-service="conversionService">
     </mvc:annotation-driven>
     
     <!-- 视图解析器 -->
@@ -36,21 +35,14 @@
      -->
 	
 	
-	<!-- 日期类型转换器 
+	<!-- 日期类型转换器 -->
 	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-	-->
-		<!-- <property name="converters">
-			<list>
-				<bean class="com.mvc.converter.DateConverter"/>
-			</list>
-		</property> 
 		<property name="formatters">
-			<bean class="com.mvc.converter.DateFormatter">
+			<bean class="com.ssm.core.converter.DateFormatter">
 				<constructor-arg value="yyyy-MM-dd"></constructor-arg>
 			</bean>
 		</property>
 	</bean>
-		-->
 	
     <!-- 配置拦截器  
 	<mvc:interceptors>

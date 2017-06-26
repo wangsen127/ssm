@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<hr>
 	1.<a href="user/queryUser.do">用户管理</a><br>
 	2.<a href="emp/queryDept.do">部门管理</a><br>
-	3.<a href="listEmp.do">员工管理</a><br>
+	3.<a href="emp/queryEmp.do">员工管理</a><br>
 	4.<a href="regist.html">注册页面</a><br>
 	</center>
 </body>

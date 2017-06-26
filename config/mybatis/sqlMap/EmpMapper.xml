@@ -6,10 +6,10 @@
 	
 	<!-- 标签的id 与 dao的方法名称 一致 -->
 	<insert id="insertEmp" parameterType="com.ssm.emp.pojo.Emp" useGeneratedKeys="true" keyProperty="eid">
-		insert into t_emp(ename,sal,hireDate,deptid) values(#{ename},#{sal},#{hireDate},#{dept.did})
+		insert into t_emp(ename,sal,hiredate,deptid) values(#{ename},#{sal},#{hiredate},#{dept.did})
 	</insert>
 	<update id="updateEmp" parameterType="com.ssm.emp.pojo.Emp">
-		update t_emp set ename=#{ename},sal=#{sal},hireDate=#{hireDate},deptid=#{dept.did} where eid=#{eid}
+		update t_emp set ename=#{ename},sal=#{sal},hiredate=#{hiredate},deptid=#{dept.did} where eid=#{eid}
 	</update>
 	<delete id="deleteEmp" parameterType="integer">
 		delete from t_emp where eid in
@@ -18,18 +18,18 @@
 		</foreach>
 	</delete>
 	<select id="getEmp" parameterType="integer" resultMap="empMap">
-		select eid,ename,sal,hireDate,did,dname
+		select eid,ename,sal,hiredate,did,dname
 		from t_emp a,t_dept b
 		where a.deptid=b.did and eid=#{eid}
 	</select>
 	<select id="queryEmp" parameterType="com.ssm.emp.pojo.Emp" resultMap="empMap">
-		select eid,ename,sal,hireDate,did,dname
+		select eid,ename,sal,hiredate,did,dname
 		from t_emp a,t_dept b
 		where a.deptid=b.did
 		<if test="ename!=null and ename!=''">
 			and ename=#{ename}
 		</if>
-		<if test="dept.did!=null and dept.did!=-1">
+		<if test="dept!=null and dept.did!=null and dept.did!=-1">
 			and b.did=#{dept.did}
 		</if>
 	</select>
