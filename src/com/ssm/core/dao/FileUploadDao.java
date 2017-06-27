@@ -11,4 +11,5 @@ public interface FileUploadDao {
 	public List<FileUpload> queryFileUpload(FileUpload fileUpload);
 	
 	public void delFileUploadByFid(Integer fid);
+	public void deleteFileUpload(Integer[] uid);
 }

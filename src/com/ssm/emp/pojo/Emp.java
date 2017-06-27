@@ -1,12 +1,9 @@
 package com.ssm.emp.pojo;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotBlank;
+import com.ssm.core.pojo.FileUpload;
 
 public class Emp {
 
@@ -20,6 +17,7 @@ public class Emp {
 	//@NotNull(message="{emp.hireDate.isnull}")
 	private Date hiredate;
 	private Dept dept;
+	private List<FileUpload> filelist;
 	public Integer getEid() {
 		return eid;
 	}
@@ -49,5 +47,11 @@ public class Emp {
 	}
 	public void setDept(Dept dept) {
 		this.dept = dept;
+	}
+	public List<FileUpload> getFilelist() {
+		return filelist;
+	}
+	public void setFilelist(List<FileUpload> filelist) {
+		this.filelist = filelist;
 	}
 }

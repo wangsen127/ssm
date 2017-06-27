@@ -27,15 +27,10 @@
 	<delete id="delFileUploadByFid" parameterType="integer">
 		delete from t_file_upload where fid=#{fid}
 	</delete>
-	<!-- 
-	<update id="updateFileUpload" parameterType="com.ssm.user.pojo.User">
-		update t_user set usercode=#{usercode},username=#{username},role=#{role} where userid=#{userid}
-	</update>
-	<update id="deleteFileUpload" parameterType="integer">
-		update t_user set delflag=0 where userid in
+	<delete id="deleteFileUpload" parameterType="integer">
+		delete from t_file_upload where uid in
 		<foreach collection="array" open="(" close=")" separator="," item="id">
 		#{id}
 		</foreach>
-	</update> 
-	-->
+	</delete>
 </mapper>

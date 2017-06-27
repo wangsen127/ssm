@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ssm.core.dao.FileUploadDao;
+import com.ssm.core.pojo.FileUpload;
 import com.ssm.emp.dao.EmpDao;
 import com.ssm.emp.pojo.Emp;
 import com.ssm.emp.service.EmpService;
@@ -14,6 +16,8 @@ public class EmpServiceImpl implements EmpService {
 
 	@Autowired
 	private EmpDao empDao;
+	@Autowired
+	private FileUploadDao fileUploadDao;
 	
 	@Override
 	public void saveEmp(Emp emp) throws Exception {
@@ -38,6 +42,17 @@ public class EmpServiceImpl implements EmpService {
 	@Override
 	public List<Emp> queryEmp(Emp emp) throws Exception {
 		return empDao.queryEmp(emp);
+	}
+	
+	@Override
+	public Emp getEmpWithFile(Integer eid) throws Exception {
+		Emp emp = empDao.getEmp(eid);
+		FileUpload fileUpload = new FileUpload();
+		fileUpload.setModule("emp");
+		fileUpload.setFid(eid);
+		List<FileUpload> filelist = fileUploadDao.queryFileUpload(fileUpload);
+		emp.setFilelist(filelist);
+		return emp;
 	}
 
 }

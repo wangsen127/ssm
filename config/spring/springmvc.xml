@@ -44,7 +44,7 @@
 		</property>
 	</bean>
 	
-    <!-- 配置拦截器  
+    <!-- 配置拦截器  -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
@@ -52,7 +52,7 @@
 			<bean class="com.ssm.core.interceptor.LoginInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>    
-  -->
+  
     
     <!-- 数据校验框架 -->
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">

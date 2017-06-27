@@ -30,4 +30,14 @@ public class FileUploadServiceImpl implements FileUploadService {
 		return fileUploadDao.queryFileUpload(fileUpload);
 	}
 
+	@Override
+	public void delFileUploadByFid(Integer fid) {
+		fileUploadDao.delFileUploadByFid(fid);
+	}
+
+	@Override
+	public void deleteFileUpload(Integer[] uid) {
+		fileUploadDao.deleteFileUpload(uid);
+	}
+
 }

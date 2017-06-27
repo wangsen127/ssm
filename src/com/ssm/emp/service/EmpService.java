@@ -11,4 +11,6 @@ public interface EmpService {
 	public void delEmp(Integer[] eid) throws Exception;
 	public Emp getEmp(Integer eid) throws Exception;
 	public List<Emp> queryEmp(Emp emp) throws Exception;
+	
+	public Emp getEmpWithFile(Integer eid) throws Exception;
 }

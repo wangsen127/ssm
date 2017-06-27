@@ -64,8 +64,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td>${emp.dept.dname }&nbsp;</td>				
 				<td>
 					<a href="emp/showEditEmp.do?eid=${emp.eid }">修改</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;
 					<a href="emp/delEmp.do?eid=${emp.eid }">删除</a>
+					&nbsp;&nbsp;
+					<a href="emp/queryEmpFile.do?eid=${emp.eid }">文件</a>
 				</td>				
 			</tr>
 			</c:forEach>
